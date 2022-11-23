@@ -50,11 +50,11 @@ void insertMiddle(string data1, int data2){
     baru->next = NULL;
 
     system("cls");
-    cout << "=================================";
-    cout << "======= Pilih Mode Insert =======";
-    cout << "= 1. Insert Before              =";
-    cout << "= 2. Insert After               =";
-    cout << "=================================";
+    cout << "=================================\n";
+    cout << "======= Pilih Mode Insert =======\n";
+    cout << "= 1. Insert Before              =\n";
+    cout << "= 2. Insert After               =\n";
+    cout << "=================================\n";
     cout << "Pilih : ";cin>>pilih;
     switch (pilih){
         case 1: system("cls");{
@@ -193,7 +193,7 @@ void deleteMiddle(){
                     hapus->prev->next = hapus->next;
                     hapus->next->prev = hapus->prev;
                     cout << "\nData " << hapus->nama << " " << hapus->nilai << " berhasil dihapus!\n";
-                    success == true;
+                    success = true;
                     delete hapus;
                 }
                 hapus = hapus->next;
@@ -248,27 +248,53 @@ void searchData(){
             }
             list = list->next;
         } while (list != NULL);
+        if (find == false){
+            cout << "\nMaaf data tidak ditemukan\n";
+        }
     }
 
-    if (find == false){
-        cout << "\nMaaf data tidak ditemukan\n";
-    }
 }
 
 void showData(){
     mahasiswa *list;
-    list = head;
     int i = 1;
+    int pilih;
     if (isEmpty() == true){
         system("cls");
         cout << "Maaf data kosong!\n";
     } else {
         system("cls");
-        cout << "List Mahasiswa : \n";
-        while (list != NULL){
-            cout << i << ". " << list->nama << " " << list->nilai << "\n";
-            i++;
-            list = list->next;
+        cout << "=================================\n";
+        cout << "======= Pilih Mode Tampil =======\n";
+        cout << "= 1. Tampil dari depan          =\n";
+        cout << "= 2. Tampil dari belakang       =\n";
+        cout << "=================================\n";
+        cout << "Pilih : ";cin>>pilih;
+        switch (pilih){
+            case 1 : system("cls");{
+                list = head;
+                cout << "List Mahasiswa : \n";
+                while (list != NULL){
+                    cout << i << ". " << list->nama << " " << list->nilai << "\n";
+                    i++;
+                    list = list->next;
+                }
+                break;
+            }
+            case 2 : system("cls");{
+                list = tail;
+                cout << "List Mahasiswa : \n";
+                while (list != NULL){
+                    cout << i << ". " << list->nama << " " << list->nilai << "\n";
+                    i++;
+                    list = list->prev;
+                }
+                break;
+            }
+            default : system("cls");{
+                cout << "Maaf pilihan tidak ada!\n";
+                break;
+            }
         }
     }
 }
